@@ -13,11 +13,11 @@ class EmptyFavoriteState extends StatelessWidget {
           Icon(Icons.favorite_border, size: 64, color: Colors.grey.shade300),
           SizedBox(height: 12),
           Text(
-            'Belum ada bunga favorite',
+            'Belum ada produk favorite',
             style: TextStyle(color: Colors.grey.shade600),
           ),
           Text(
-            'Ketuk ikon hati pada bunga untuk menambahkannya',
+            'Ketuk ikon hati untuk menyimpan produk favoritmu',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
           ),

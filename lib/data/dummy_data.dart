@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:segari_app/theme/app_theme.dart';
 
 import '../models/product.dart';
 import '../models/promo_banner.dart';
@@ -21,8 +22,8 @@ final List<Product> dummyProducts = [
         'Wortel Brastagi Ekonomis adalah wortel segar dengan tekstur renyah dan rasa manis alami. Cocok untuk berbagai masakan seperti sup, tumisan, capcay, salad, hingga jus. Pilihan ekonomis untuk kebutuhan sayur sehari-hari.',
     imageUrl:
         'https://assets-cloudflare.segari-ops.id/products/10700000040_1_04062026043338.webp',
-    icon: Icons.local_florist,
-    color: Colors.red.shade300,
+    icon: Icons.eco_rounded,
+    color: AppTheme.secondary.withValues(alpha: 0.12),
   ),
   Product(
     id: 'f2',
@@ -35,8 +36,8 @@ final List<Product> dummyProducts = [
         'Cabai Rawit Merah** adalah cabai segar dengan rasa pedas yang kuat dan aroma khas. Cocok digunakan sebagai sambal, bumbu masakan, tumisan, atau pelengkap berbagai hidangan sehari-hari.',
     imageUrl:
         'https://assets-cloudflare.segari-ops.id/products/10100000006_1_09092026113012.webp',
-    icon: Icons.local_florist,
-    color: Colors.amber.shade400,
+    icon: Icons.eco_rounded,
+    color: AppTheme.secondary.withValues(alpha: 0.12),
   ),
   Product(
     id: 'f3',
@@ -49,8 +50,8 @@ final List<Product> dummyProducts = [
         'Anggrek ungu elegan yang tahan lama, cocok sebagai penghias meja kerja maupun ruang tamu.',
     imageUrl:
         'https://assets-cloudflare.segari-ops.id/products/20002300001_1_31122024044455.webp',
-    icon: Icons.spa,
-    color: Colors.deepPurple.shade300,
+    icon: Icons.apple_rounded,
+    color: Colors.red.shade300,
   ),
   Product(
     id: 'f4',
@@ -63,8 +64,8 @@ final List<Product> dummyProducts = [
         'Bunga matahari yang cerah dan besar, simbol kebahagiaan dan optimisme. Cocok untuk mempercantik hari-harimu.',
     imageUrl:
         'https://assets-cloudflare.segari-ops.id/products/20001900002_1_17122024051114.webp',
-    icon: Icons.wb_sunny,
-    color: Colors.orange.shade400,
+    icon: Icons.apple_rounded,
+    color: Colors.red.shade300,
   ),
   Product(
     id: 'f5',
@@ -77,7 +78,7 @@ final List<Product> dummyProducts = [
         'Lily putih yang anggun dan wangi, sering digunakan untuk acara formal maupun ucapan belasungkawa.',
     imageUrl:
         'https://assets-cloudflare.segari-ops.id/products/71713000028_1_30052025040614.webp',
-    icon: Icons.local_florist,
+    icon: Icons.rice_bowl_rounded,
     color: Colors.grey.shade300,
   ),
   Product(
@@ -91,8 +92,8 @@ final List<Product> dummyProducts = [
         'Lavender dengan aroma menenangkan, cocok untuk relaksasi dan mempercantik taman kecil di rumah.',
     imageUrl:
         'https://assets-cloudflare.segari-ops.id/products/50000100091_1_05082026013550.webp',
-    icon: Icons.grass,
-    color: Colors.purple.shade200,
+    icon: Icons.restaurant_rounded,
+    color: Colors.red.shade200,
   ),
   Product(
     id: 'f7',
@@ -105,8 +106,8 @@ final List<Product> dummyProducts = [
         'Peony pink dengan kelopak berlapis yang mewah, favorit untuk dekorasi pernikahan dan acara spesial.',
     imageUrl:
         'https://assets-cloudflare.segari-ops.id/products/70000400003_1_05062026043114.webp',
-    icon: Icons.local_florist,
-    color: Colors.pink.shade200,
+    icon: Icons.rice_bowl_rounded,
+    color: Colors.grey.shade200,
   ),
   Product(
     id: 'f8',
@@ -119,8 +120,8 @@ final List<Product> dummyProducts = [
         'Daisy putih yang manis dan sederhana, cocok untuk buket kasual sehari-hari.',
     imageUrl:
         'https://assets-cloudflare.segari-ops.id/products/31332000260_1_03112023064840.webp',
-    icon: Icons.local_florist,
-    color: Colors.teal.shade200,
+    icon: Icons.set_meal_rounded,
+    color: Colors.orange.shade200,
   ),
 ];
 
