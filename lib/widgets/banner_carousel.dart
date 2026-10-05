@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flowee_app/models/promo_banner.dart';
-import 'package:flowee_app/widgets/banner_slide.dart';
-import 'package:flowee_app/widgets/carousel_dots.dart';
+import 'package:segari_app/models/promo_banner.dart';
+import 'package:segari_app/widgets/banner_slide.dart';
+import 'package:segari_app/widgets/carousel_dots.dart';
 import 'package:flutter/material.dart';
 
 // carousel banner akan bergeser otomatis setiap beberapa detik, untk handling timer seperti ini kita butuh peran stf untuk melakukan perubahan widget pada layar
@@ -16,7 +16,6 @@ class BannerCarousel extends StatefulWidget {
 }
 
 class _BannerCarouselState extends State<BannerCarousel> {
-
   /**
    * PageController -> untuk mengatur slide mana yg sedang tampil di PageView
    */
@@ -35,7 +34,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
       _controller.animateToPage(
         next,
         duration: Duration(milliseconds: 500),
-        curve: Curves.easeInOutCubic
+        curve: Curves.easeInOutCubic,
       );
     });
   }
@@ -47,7 +46,6 @@ class _BannerCarouselState extends State<BannerCarousel> {
    * walau carousel sudah tidak muncul di layar. 
    * ini salah satu penyebab memory leak di flutter
    */
-
   void dispose() {
     _timer?.cancel();
     _controller.dispose();
@@ -64,20 +62,24 @@ class _BannerCarouselState extends State<BannerCarousel> {
           height: 168,
           child: PageView.builder(
             controller: _controller,
-            itemCount: widget.banners.length, // ambil banyaknya data dari sebuah index
+            itemCount:
+                widget.banners.length, // ambil banyaknya data dari sebuah index
             /**
              * logic ketika user melakukan action swipe;
              * dipanggil juga saat pengguna swipe manual, bukan cuma saat digeser otomatis oleh timer. supaya titik indikator dibawah selalu sinkron dengan slide yang tampil
              */
             onPageChanged: (index) => setState(() => _page = index),
-            itemBuilder: (context, index) => BannerSlide(banner: widget.banners[index]),
+            itemBuilder: (context, index) =>
+                BannerSlide(banner: widget.banners[index]),
           ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(height: 10),
         CarouselDots(
-          count: widget.banners.length, // apapun yang diakhiri dengan count, dia nanya berapa yang mau ditampilin dan harus pake method length 
-          activeIndex: _page, 
-          activeColor: widget.banners[_page].gradientColors.first)
+          count: widget
+              .banners
+              .length, // apapun yang diakhiri dengan count, dia nanya berapa yang mau ditampilin dan harus pake method length
+          activeIndex: _page,
+        ),
       ],
     );
   }

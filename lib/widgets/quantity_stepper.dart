@@ -1,8 +1,13 @@
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:segari_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class QuantityStepper extends StatelessWidget {
-  const QuantityStepper({super.key, required this.quantity, required this.onIncrement, required this.onDecrement});
+  const QuantityStepper({
+    super.key,
+    required this.quantity,
+    required this.onIncrement,
+    required this.onDecrement,
+  });
 
   final int quantity;
   final VoidCallback onIncrement;
@@ -13,14 +18,6 @@ class QuantityStepper extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'Jumlah',
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
-            color: AppTheme.textPrimary
-          ),
-        ),
         Row(
           children: [
             // definisikan kelas stepper button
@@ -29,15 +26,12 @@ class QuantityStepper extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 18),
               child: Text(
                 '$quantity',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
               ),
             ),
             _StepperButton(icon: Icons.add_rounded, onTap: onIncrement),
           ],
-        )
+        ),
       ],
     );
   }
@@ -59,9 +53,9 @@ class _StepperButton extends StatelessWidget {
         height: 34,
         decoration: BoxDecoration(
           color: AppTheme.primary.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(10)
+          borderRadius: BorderRadius.circular(10),
         ),
-        child: Icon(icon, size: 18, color: AppTheme.primaryDark),
+        child: Icon(icon, size: 18, color: AppTheme.primary),
       ),
     );
   }

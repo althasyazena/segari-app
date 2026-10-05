@@ -1,8 +1,15 @@
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:segari_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class LoginFormCard extends StatefulWidget {
-  const LoginFormCard({super.key, required this.formKey, required this.emailController, required this.passwordController, required this.isLoading, required this.onSubmit});
+  const LoginFormCard({
+    super.key,
+    required this.formKey,
+    required this.emailController,
+    required this.passwordController,
+    required this.isLoading,
+    required this.onSubmit,
+  });
 
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
@@ -27,11 +34,11 @@ class _LoginFormCardState extends State<LoginFormCard> {
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.primaryDark.withValues(alpha: 0.22),
+            color: AppTheme.primary.withValues(alpha: 0.22),
             blurRadius: 32,
-            offset: Offset(0, 16)
-          )
-        ]
+            offset: Offset(0, 16),
+          ),
+        ],
       ),
       child: Form(
         key: widget.formKey,
@@ -43,17 +50,14 @@ class _LoginFormCardState extends State<LoginFormCard> {
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.w800,
-                color: AppTheme.textPrimary
+                color: AppTheme.textPrimary,
               ),
             ),
             SizedBox(height: 5),
             Text(
               'Isi data dibawah ini untuk mulai berbelanja',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 13,
-                color: AppTheme.textSecondary
-              ),
+              style: TextStyle(fontSize: 13, color: AppTheme.textSecondary),
             ),
             SizedBox(height: 26),
             TextFormField(
@@ -61,9 +65,11 @@ class _LoginFormCardState extends State<LoginFormCard> {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: 'Email',
-                prefixIcon: Icon(Icons.email_outlined)
+                prefixIcon: Icon(Icons.email_outlined),
               ),
-              validator: (value) => (value == null || value.isEmpty) ? 'Email tidak boleh kosong' : null
+              validator: (value) => (value == null || value.isEmpty)
+                  ? 'Email tidak boleh kosong'
+                  : null,
             ),
             SizedBox(height: 14),
             TextFormField(
@@ -73,23 +79,32 @@ class _LoginFormCardState extends State<LoginFormCard> {
                 labelText: 'Password',
                 prefixIcon: Icon(Icons.lock_outline),
                 suffixIcon: IconButton(
-                  icon: Icon(_obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+                  icon: Icon(
+                    _obscure
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                  ),
                   onPressed: () => setState(() => _obscure = !_obscure),
-                )
+                ),
               ),
-              validator: (value) => (value == null || value.isEmpty) ? 'Password tidak boleh kosong' : null,
+              validator: (value) => (value == null || value.isEmpty)
+                  ? 'Password tidak boleh kosong'
+                  : null,
             ),
             SizedBox(height: 26),
             ElevatedButton(
-              onPressed: widget.isLoading ? null : widget.onSubmit, 
+              onPressed: widget.isLoading ? null : widget.onSubmit,
               child: widget.isLoading
                   ? SizedBox(
-                    width: 22,
-                    height: 22,
-                    child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5),
-                  )
-                  : Text('Masuk')
-            )
+                      width: 22,
+                      height: 22,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2.5,
+                      ),
+                    )
+                  : Text('Masuk'),
+            ),
           ],
         ),
       ),

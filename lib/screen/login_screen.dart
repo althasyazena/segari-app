@@ -1,10 +1,9 @@
-import 'package:flowee_app/data/dummy_data.dart';
-import 'package:flowee_app/screen/main_screen.dart';
-import 'package:flowee_app/state/auth_controller.dart';
-import 'package:flowee_app/theme/app_theme.dart';
-import 'package:flowee_app/widgets/decorative_glow.dart';
-import 'package:flowee_app/widgets/login_brand_header.dart';
-import 'package:flowee_app/widgets/login_form_card.dart';
+import 'package:segari_app/data/dummy_data.dart';
+import 'package:segari_app/screen/main_screen.dart';
+import 'package:segari_app/state/auth_controller.dart';
+import 'package:segari_app/theme/app_theme.dart';
+import 'package:segari_app/widgets/decorative_glow.dart';
+import 'package:segari_app/widgets/login_form_card.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -32,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = true);
 
-    await Future.delayed(Duration(microseconds: 600));
+    await Future.delayed(const Duration(microseconds: 600));
 
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
@@ -42,15 +41,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (email == DummyUser.email && password == DummyUser.password) {
       await AuthController.instance.login();
-      if(!mounted) return;
+
+      if (!mounted) return;
+
       Navigator.of(
         context,
       ).pushReplacement(MaterialPageRoute(builder: (_) => const MainScreen()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Email atau passowrd salah. mohon dicoba kembali')
-        )
+        const SnackBar(
+          content: Text('Email atau password salah. Mohon dicoba kembali'),
+        ),
       );
     }
   }
@@ -58,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.primaryDark,
+      backgroundColor: AppTheme.primary,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -66,32 +67,58 @@ class _LoginScreenState extends State<LoginScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [AppTheme.primary, AppTheme.primaryDark],
+            colors: [AppTheme.primary, AppTheme.primary],
           ),
         ),
-        // Stack menumpuk beberapa widget di atas satu sama lain. Di sini:
-        // hiasan glow paling belakang, lalu konten form di atasnya.
         child: Stack(
           children: [
             const Positioned(top: -70, right: -50, child: DecorativeGlow(220)),
-            const Positioned(bottom: -90, left: -70, child: DecorativeGlow(260)),
+            const Positioned(
+              bottom: -90,
+              left: -70,
+              child: DecorativeGlow(260),
+            ),
             const Positioned(top: 190, left: -40, child: DecorativeGlow(110)),
+
             SafeArea(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(24, 16, 24, 28),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 16),
-                    const LoginBrandHeader(),
-                    const SizedBox(height: 36),
-                    LoginFormCard(
-                      formKey: _formKey,
-                      emailController: _emailController,
-                      passwordController: _passwordController,
-                      isLoading: _isLoading,
-                      onSubmit: _login,
-                    ),
-                  ],
+              child: Center(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(24, 16, 24, 28),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // LOGO
+                      Image.network(
+                        'https://s3-ap-southeast-1.amazonaws.com/blog-assets.segari.id/2021/04/SEGARI---Logo-Round_300px-X-300px.png',
+                        width: 150,
+                        height: 150,
+                        fit: BoxFit.contain,
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      // TAGLINE
+                      const Text(
+                        'Your Supermarket at Home',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+
+                      const SizedBox(height: 28),
+
+                      // LOGIN FORM
+                      LoginFormCard(
+                        formKey: _formKey,
+                        emailController: _emailController,
+                        passwordController: _passwordController,
+                        isLoading: _isLoading,
+                        onSubmit: _login,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -101,5 +128,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-// titip code mute

@@ -1,4 +1,4 @@
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:segari_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 /**
@@ -18,13 +18,13 @@ class SearchField extends StatelessWidget {
     return TextField(
       onChanged: onChanged,
       decoration: InputDecoration(
-        hintText: 'Cari mawar, tulip, atau anggrek...',
+        hintText: 'Cari kebutuhan segar hari ini...',
         hintStyle: TextStyle(color: AppTheme.textSecondary, fontSize: 13.5),
         prefixIcon: Icon(Icons.search_rounded, color: AppTheme.textSecondary),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18),
-          borderSide: BorderSide.none
-        )
+          borderSide: BorderSide.none,
+        ),
       ),
     );
   }

@@ -1,4 +1,4 @@
-package com.example.flowee_app
+package com.example.segari_app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -2,23 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const Color primary = Color(0xFFD6336C);
-  static const Color primaryDark = Color(0xFFA0224D);
-  static const Color primarySoft = Color(0xFFF7D9E3);
-  static const Color leaf = Color(0xFF4C7A5D);
+  // =========================
+  // COLORS
+  // =========================
+
+  static const Color primary = Color(0xFFFFA500);
+  static const Color secondary = Color(0xFF009900);
+  static const Color tertiary = Color(0xFFFF6600);
+
+  static const Color leaf = secondary;
+
   static const Color background = Color(0xFFFFFAF6);
   static const Color surface = Colors.white;
+
   static const Color textPrimary = Color(0xFF2B2730);
   static const Color textSecondary = Color(0xFF938C97);
 
-  /// Elegant serif used for the brand wordmark and product/section headings.
+  // =========================
+  // FONT
+  // =========================
+
   static TextStyle display({
     double fontSize = 22,
     FontWeight fontWeight = FontWeight.w700,
     Color color = textPrimary,
     double? letterSpacing,
   }) {
-    return GoogleFonts.playfairDisplay(
+    return GoogleFonts.poppins(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
@@ -26,13 +36,20 @@ class AppTheme {
     );
   }
 
+  // =========================
+  // THEME
+  // =========================
+
   static ThemeData get theme {
-    final baseTextTheme = GoogleFonts.plusJakartaSansTextTheme();
+    final baseTextTheme = GoogleFonts.poppinsTextTheme();
+
     final base = ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: primary,
         primary: primary,
+        secondary: secondary,
+        tertiary: tertiary,
         surface: surface,
       ),
       scaffoldBackgroundColor: background,
@@ -50,9 +67,10 @@ class AppTheme {
         centerTitle: true,
         titleTextStyle: display(fontSize: 20),
       ),
+
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: primary,
+          backgroundColor: secondary,
           foregroundColor: Colors.white,
           minimumSize: const Size.fromHeight(54),
           textStyle: baseTextTheme.labelLarge?.copyWith(
@@ -65,10 +83,14 @@ class AppTheme {
           elevation: 0,
         ),
       ),
+
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: const Color(0xFFF7F2F0),
-        labelStyle: const TextStyle(color: textSecondary, fontSize: 13.5),
+        labelStyle: const TextStyle(
+          color: textSecondary,
+          fontSize: 13.5,
+        ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 18,
           vertical: 16,
@@ -83,9 +105,13 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: primary, width: 1.6),
+          borderSide: const BorderSide(
+            color: primary,
+            width: 1.6,
+          ),
         ),
       ),
+
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: Colors.white,
         selectedItemColor: primary,
@@ -101,14 +127,19 @@ class AppTheme {
   }
 }
 
-// function untuk handle konfersi digit angka untuk harga, yang sebelumnya berformat double jadi string
+// =========================
+// FORMAT RUPIAH
+// =========================
+
 String formatRupiah(double price) {
   final str = price.toStringAsFixed(0);
   final buffer = StringBuffer();
 
   for (int i = 0; i < str.length; i++) {
     final posFormed = str.length - i;
+
     buffer.write(str[i]);
+
     if (posFormed > i && posFormed % 3 == 1) {
       buffer.write('.');
     }

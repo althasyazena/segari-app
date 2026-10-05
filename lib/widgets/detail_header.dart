@@ -1,14 +1,13 @@
-import 'package:flowee_app/models/flower.dart';
-import 'package:flowee_app/state/favorites_controller.dart';
-import 'package:flowee_app/theme/app_theme.dart';
-import 'package:flowee_app/widgets/circle_icon_button.dart';
-import 'package:flowee_app/widgets/flower_image.dart';
+import 'package:segari_app/models/product.dart';
+import 'package:segari_app/theme/app_theme.dart';
+import 'package:segari_app/widgets/circle_icon_button.dart';
+import 'package:segari_app/widgets/product_image.dart';
 import 'package:flutter/material.dart';
 
 class DetailHeader extends StatelessWidget {
-  const DetailHeader({super.key, required this.flower, required this.onBack});
+  const DetailHeader({super.key, required this.product, required this.onBack});
 
-  final Flower flower;
+  final Product product;
   final VoidCallback onBack;
 
   @override
@@ -20,52 +19,70 @@ class DetailHeader extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Hero(
-              tag: 'flower-image${flower.id}', 
-              child: FlowerNetworkImage(
-                imageUrl: flower.imageUrl, 
-                fallbackIcon: flower.icon, 
-                fallbackColor: flower.color,
-              )
-            )
+              tag: 'product-image-${product.id}',
+              child: ProductNetworkImage(
+                imageUrl: product.imageUrl,
+                fallbackIcon: product.icon,
+                fallbackColor: product.color,
+              ),
+            ),
           ),
+
           SafeArea(
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleIconButton(
-                    icon: Icons.arrow_back_rounded,
+                  // BACK BUTTON
+                  InkWell(
                     onTap: onBack,
+                    borderRadius: BorderRadius.circular(14),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.arrow_back_ios,
+                            color: AppTheme.tertiary,
+                            size: 18,
+                          ),
+                          const SizedBox(width: 4),
+                          const Text(
+                            'Back',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: AppTheme.tertiary,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  _FavoriteButton(flowerId: flower.id)
+
+                  // CART BUTTON
+                  CircleIconButton(
+                    icon: Icons.shopping_cart_outlined,
+                    iconColor: AppTheme.secondary,
+                    onTap: () {
+                      // TODO: buka cart
+                    },
+                  ),
                 ],
               ),
-            )
-          )
+            ),
+          ),
         ],
       ),
-    );
-  }
-}
-
-class _FavoriteButton extends StatelessWidget {
-  const _FavoriteButton({required this.flowerId});
-
-  final String flowerId;
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<Set<String>>(
-      valueListenable: FavoritesController.instance,
-      builder: (context, favoritesId, _) {
-        final isFavorite = favoritesId.contains(flowerId);
-        return CircleIconButton(
-          icon: isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-          iconColor: isFavorite ? AppTheme.primary : Colors.black87,
-          onTap: () => FavoritesController.instance.toggle(flowerId),
-        );
-      },
     );
   }
 }

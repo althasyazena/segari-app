@@ -1,4 +1,4 @@
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:segari_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class EmptyFavoriteState extends StatelessWidget {
@@ -14,18 +14,13 @@ class EmptyFavoriteState extends StatelessWidget {
           SizedBox(height: 12),
           Text(
             'Belum ada bunga favorite',
-            style: TextStyle(
-              color: Colors.grey.shade600
-            ),
+            style: TextStyle(color: Colors.grey.shade600),
           ),
           Text(
             'Ketuk ikon hati pada bunga untuk menambahkannya',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.grey.shade400,
-              fontSize: 12
-            ),
-          )
+            style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
+          ),
         ],
       ),
     );

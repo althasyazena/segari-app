@@ -1,4 +1,4 @@
-# flowee_app
+# segari_app
 
 A new Flutter project.
 

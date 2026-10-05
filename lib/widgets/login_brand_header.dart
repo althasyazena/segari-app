@@ -1,4 +1,4 @@
-import 'package:flowee_app/theme/app_theme.dart';
+import 'package:segari_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class LoginBrandHeader extends StatelessWidget {
@@ -16,8 +16,8 @@ class LoginBrandHeader extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(
               color: Colors.white.withValues(alpha: 0.28),
-              width: 1.2
-            )
+              width: 1.2,
+            ),
           ),
           child: Icon(
             Icons.local_florist_rounded,
@@ -27,11 +27,11 @@ class LoginBrandHeader extends StatelessWidget {
         ),
         SizedBox(height: 20),
         Text(
-          'Flowee',
+          'Segari',
           style: AppTheme.display(
             fontSize: 32,
             color: Colors.white,
-            letterSpacing: 0.5
+            letterSpacing: 0.5,
           ),
         ),
         SizedBox(height: 6),
@@ -40,9 +40,9 @@ class LoginBrandHeader extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white.withValues(alpha: 0.85),
-            fontSize: 13
+            fontSize: 13,
           ),
-        )
+        ),
       ],
     );
   }

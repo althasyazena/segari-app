@@ -1,14 +1,20 @@
-import 'package:flowee_app/data/dummy_data.dart';
-import 'package:flowee_app/theme/app_theme.dart';
-import 'package:flowee_app/widgets/banner_carousel.dart';
-import 'package:flowee_app/widgets/category_chip_list.dart';
-import 'package:flowee_app/widgets/home_header.dart';
-import 'package:flowee_app/widgets/profile_sheet.dart';
-import 'package:flowee_app/widgets/search_field.dart';
+import 'package:segari_app/data/dummy_data.dart';
+import 'package:segari_app/theme/app_theme.dart';
+import 'package:segari_app/widgets/banner_carousel.dart';
+import 'package:segari_app/widgets/category_chip_list.dart';
+import 'package:segari_app/widgets/home_header.dart';
+import 'package:segari_app/widgets/profile_sheet.dart';
+import 'package:segari_app/widgets/search_field.dart';
 import 'package:flutter/material.dart';
 
 class HomeContentHeader extends StatelessWidget {
-  const HomeContentHeader({super.key, required this.selectedCategory, required this.categories, required this.onQueryChanged, required this.onCategorySelected});
+  const HomeContentHeader({
+    super.key,
+    required this.selectedCategory,
+    required this.categories,
+    required this.onQueryChanged,
+    required this.onCategorySelected,
+  });
 
   final String selectedCategory;
   final List<String> categories;
@@ -30,15 +36,12 @@ class HomeContentHeader extends StatelessWidget {
           SizedBox(height: 18),
           CategoryChipList(
             categories: categories,
-            selectedCategory: selectedCategory, 
-            onSelected: onCategorySelected
+            selectedCategory: selectedCategory,
+            onSelected: onCategorySelected,
           ),
           SizedBox(height: 22),
-          Text(
-            'Rekomendasi Untukmu',
-            style: AppTheme.display(fontSize: 18)
-          ),
-          SizedBox(height: 14)
+          Text('Rekomendasi Untukmu', style: AppTheme.display(fontSize: 18)),
+          SizedBox(height: 14),
         ],
       ),
     );

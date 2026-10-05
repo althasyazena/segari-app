@@ -1,9 +1,9 @@
-import 'package:flowee_app/data/dummy_data.dart';
-import 'package:flowee_app/models/flower.dart';
-import 'package:flowee_app/screen/detail_screen.dart';
-import 'package:flowee_app/widgets/flower_card.dart';
-import 'package:flowee_app/widgets/home_content_header.dart';
-import 'package:flowee_app/widgets/home_header.dart';
+import 'package:segari_app/data/dummy_data.dart';
+import 'package:segari_app/models/product.dart';
+import 'package:segari_app/screen/detail_screen.dart';
+import 'package:segari_app/widgets/product_card.dart';
+import 'package:segari_app/widgets/home_content_header.dart';
+import 'package:segari_app/widgets/home_header.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,40 +16,49 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String _query = '';
   String _selectedCategory = 'Semua';
-  
+
   // method getter, untuk mendapatkan data dari private atribut/method
   List<String> get _categories {
-    final unique = <String>{'Semua', ...dummyFlowers.map((f) => f.category)};
+    final unique = <String>{'Semua', ...dummyProducts.map((f) => f.category)};
     return unique.toList();
   }
 
-  List<Flower> get _filteredFlowers {
-    return dummyFlowers.where((flower) {
-      final matchesQuery = flower.name.toLowerCase().contains(_query.toLowerCase());
-      final matchesCategory = _selectedCategory == 'Semua' || flower.category == _selectedCategory;
+  List<Product> get _filteredProducts {
+    return dummyProducts.where((product) {
+      final matchesQuery = product.name.toLowerCase().contains(
+        _query.toLowerCase(),
+      );
+      final matchesCategory =
+          _selectedCategory == 'Semua' || product.category == _selectedCategory;
       return matchesQuery && matchesCategory;
     }).toList();
   }
 
-  void _openDetail(Flower flower) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => DetailScreen(flower: flower)));
+  void _openDetail(Product product) {
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => DetailScreen(product: product)));
   }
 
   @override
   Widget build(BuildContext context) {
-    final flowers = _filteredFlowers;
+    final product = _filteredProducts;
     return SafeArea(
-      child: CustomScrollView( // syaratnya panggil sliver 
+      child: CustomScrollView(
+        // syaratnya panggil sliver
         slivers: [
-          SliverToBoxAdapter( // sebagai perantara widget
+          SliverToBoxAdapter(
+            // sebagai perantara widget
             child: HomeContentHeader(
-              selectedCategory: _selectedCategory, 
-              categories: _categories, 
-              onQueryChanged: (value) => setState(() => _query = value), 
-              onCategorySelected: (value) => setState(() => _selectedCategory = value) // selected category akan mengikuti value
+              selectedCategory: _selectedCategory,
+              categories: _categories,
+              onQueryChanged: (value) => setState(() => _query = value),
+              onCategorySelected: (value) => setState(
+                () => _selectedCategory = value,
+              ), // selected category akan mengikuti value
             ),
           ),
-          if (flowers.isEmpty)
+          if (product.isEmpty)
             SliverFillRemaining(
               hasScrollBody: false,
               child: Center(child: Text('Bunga Tidak Ditemukan')),
@@ -59,18 +68,18 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.fromLTRB(20, 0, 10, 100),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, 
-                  crossAxisSpacing: 16, 
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  childAspectRatio: 0.68
-                ), 
+                  childAspectRatio: 0.60,
+                ),
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) => FlowerCard(
-                    flower: flowers[index], 
-                    onTap: () => _openDetail(flowers[index])
+                  (context, index) => ProductCard(
+                    product: product[index],
+                    onTap: () => _openDetail(product[index]),
                   ),
-                  childCount: flowers.length
-                )
+                  childCount: product.length,
+                ),
               ),
             ),
         ],

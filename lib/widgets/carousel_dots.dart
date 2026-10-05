@@ -1,11 +1,15 @@
+import 'package:segari_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CarouselDots extends StatelessWidget {
-  const CarouselDots({super.key, required this.count, required this.activeIndex, required this.activeColor});
+  const CarouselDots({
+    super.key,
+    required this.count,
+    required this.activeIndex,
+  });
 
   final int count;
   final int activeIndex;
-  final Color activeColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +23,8 @@ class CarouselDots extends StatelessWidget {
           width: isActive ? 20 : 6,
           height: 6,
           decoration: BoxDecoration(
-            color: isActive ? activeColor : Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(3)
+            color: isActive ? AppTheme.secondary : Colors.grey.shade300,
+            borderRadius: BorderRadius.circular(3),
           ),
         );
       }),
